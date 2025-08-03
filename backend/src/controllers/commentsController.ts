@@ -18,3 +18,19 @@ export async function addComment(req: Request, res: Response) {
         res.status(500).json({ error: 'Server error' });
     }
 }
+
+export async function getCommentsForPost(req: Request, res: Response) {
+    try {
+        const postId = parseInt(req.params.post_id, 10);
+        const result = await pool.query(
+            `SELECT * FROM comments WHERE post_id = $1 ORDER BY created_at ASC`,
+            [postId]
+        );
+
+        // Always return 200, even if empty
+        return res.status(200).json(result.rows);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Server error' });
+    }
+}

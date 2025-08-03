@@ -7,6 +7,7 @@ dotenv.config();
 import usersRoutes from './routes/users';
 import postsRoutes from './routes/posts';
 import commentsRoutes from './routes/comments';
+import authRoutes from './routes/auth';
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use('/users', usersRoutes);
 app.use('/posts', postsRoutes);
 app.use('/comments', commentsRoutes);
+app.use('/auth', authRoutes);
 
 app.get('/', (_, res) => {
     res.json({ message: 'API running' });

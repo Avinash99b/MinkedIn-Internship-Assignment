@@ -4,3 +4,6 @@ dist
 coverage
 .vscode
 .env
+minkedin-internship-test-firebase.json
+.gitignore
+build
