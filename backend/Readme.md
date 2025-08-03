@@ -48,26 +48,28 @@ It supports:
 ```
 
 MinkedIn/
-│── frontend/           # React frontend (Vercel/Netlify)
-│── backend/            # Node.js Express backend (Render)
-│   ├── src/
-│   │   ├── config/
-│   │   │   ├── db.js
-│   │   │   ├── firebase.js
-│   │   ├── middleware/
-│   │   │   └── auth.js
-│   │   ├── routes/
-│   │   │   ├── users.js
-│   │   │   ├── posts.js
-│   │   │   └── comments.js
-│   │   ├── controllers/
-│   │   │   ├── usersController.js
-│   │   │   ├── postsController.js
-│   │   │   └── commentsController.js
-│   │   ├── app.js
-│   │   └── server.js
-│   ├── .env
-│   ├── package.json
+│── src/
+│   ├── config/
+│   │   ├── db.ts
+│   │   ├── firebase.ts
+│   ├── middleware/
+│   │   └── auth.ts
+│   ├── routes/
+│   │   ├── users.ts
+│   │   ├── posts.ts
+│   │   └── comments.ts
+│   ├── controllers/
+│   │   ├── usersController.ts
+│   │   ├── postsController.ts
+│   │   └── commentsController.ts
+│   ├── types/
+│   │   └── express/index.d.ts
+│   ├── app.ts
+│   └── server.ts
+│── .env
+│── Readme.md       # You are here!
+│── package.json
+│── tsconfig.json
 
 ````
 
