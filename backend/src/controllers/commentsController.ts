@@ -22,7 +22,8 @@ export async function addComment(req: Request, res: Response) {
             [post_id]
         );
         res.status(201).json(comment.rows[0]);
-    } catch {
+    } catch(err) {
+        console.error('Register error:', err);
         res.status(500).json({ error: 'Server error' });
     }
 }
@@ -38,6 +39,7 @@ export async function getCommentsForPost(req: Request, res: Response) {
         // Always return 200, even if empty
         return res.status(200).json(result.rows);
     } catch (err) {
+        console.error('Register error:', err);
         console.error(err);
         return res.status(500).json({ error: 'Server error' });
     }

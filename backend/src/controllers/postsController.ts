@@ -10,7 +10,8 @@ export async function getPostById(req: Request, res: Response) {
             return res.status(404).json({ error: 'Post not found' });
         }
         res.json(result.rows[0]);
-    } catch {
+    } catch(err) {
+        console.error('Register error:', err);
         res.status(500).json({ error: 'Server error' });
     }
 }
@@ -31,7 +32,8 @@ export async function createPost(req: Request, res: Response) {
             [req.user!.uid, post_data, field, visibility]
         );
         res.status(201).json(result.rows[0]);
-    } catch {
+    } catch(err) {
+        console.error('Register error:', err);
         res.status(500).json({ error: 'Server error' });
     }
 }

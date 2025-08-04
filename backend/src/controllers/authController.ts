@@ -84,6 +84,7 @@ export async function registerUser(req: Request, res: Response) {
         res.status(201).json({ token: idToken });
     } catch (err: any) {
         const errorMsg = err.response?.data?.error?.message || 'Registration failed';
+        console.error('Register error:', err);
         res.status(400).json({ error: errorMsg });
     }
 }
@@ -116,6 +117,7 @@ export async function loginUser(req: Request, res: Response) {
 
         res.status(200).json({ token: idToken });
     } catch (err: any) {
+        console.error('Register error:', err);
         const errorMsg = err.response?.data?.error?.message || 'Login failed';
         res.status(400).json({ error: errorMsg });
     }
