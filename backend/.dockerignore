@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignore
+.env
+dist/tests
+build
+coverage
+minkedin-internship-test-firebase.json
