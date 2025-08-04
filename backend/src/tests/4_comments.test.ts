@@ -29,11 +29,11 @@ describe('Comments', () => {
     it('should get comments for a post', async () => {
         const res = await measureRequest(() =>
                 request(app)
-                    .get(`/posts/${createdPostId}/comments`)
-                    .set('Authorization', `Bearer ${authToken}`),
+                    .get(`/posts/${createdPostId}/comments`), // removed auth header
             metrics[0]
         );
         expect(res.status).toBe(200);
         expect(Array.isArray(res.body)).toBe(true);
     });
+
 });

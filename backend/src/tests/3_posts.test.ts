@@ -31,13 +31,13 @@ describe('Posts', () => {
     it('should get public posts', async () => {
         const res = await measureRequest(() =>
                 request(app)
-                    .get('/posts/public')
-                    .set('Authorization', `Bearer ${authToken}`),
+                    .get('/posts/public'), // removed auth header
             metrics[0]
         );
         expect(res.status).toBe(200);
         expect(Array.isArray(res.body)).toBe(true);
     });
+
 
     it('should get a single post by ID', async () => {
         const res = await measureRequest(() =>

@@ -24,10 +24,10 @@ describe('Users', () => {
     it('should get user profile by UID', async () => {
         const res = await measureRequest(() =>
                 request(app)
-                    .get('/users/test-user')
-                    .set('Authorization', `Bearer ${authToken}`),
+                    .get('/users/test-user'), // removed auth header
             metrics[0]
         );
         expect(res.status).toBe(200);
     });
+
 });

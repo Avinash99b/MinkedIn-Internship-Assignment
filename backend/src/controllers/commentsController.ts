@@ -14,19 +14,25 @@ export async function addComment(req: Request, res: Response) {
     try {
         const comment = await pool.query(
             `INSERT INTO comments (post_id, user_id, comment_text)
-       VALUES ($1, $2, $3) RETURNING *`,
+             VALUES ($1, $2, $3)
+             RETURNING id, post_id, user_id, comment_text, created_at, updated_at`,
             [post_id, req.user!.uid, safeText]
         );
+
         await pool.query(
-            `UPDATE posts SET comments_count = comments_count + 1 WHERE id = $1`,
+            `UPDATE posts
+             SET comments_count = comments_count + 1
+             WHERE id = $1`,
             [post_id]
         );
+
         res.status(201).json(comment.rows[0]);
     } catch(err) {
-        console.error('Register error:', err);
+        console.error('Add comment error:', err);
         res.status(500).json({ error: 'Server error' });
     }
 }
+
 
 export async function getCommentsForPost(req: Request, res: Response) {
     try {
