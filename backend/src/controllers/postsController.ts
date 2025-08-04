@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import pool from '../config/db';
+import {PostSchema} from "../validators/postSchema";
 
 export async function getPostById(req: Request, res: Response) {
     try {
@@ -16,7 +17,13 @@ export async function getPostById(req: Request, res: Response) {
 
 
 export async function createPost(req: Request, res: Response) {
-    const { post_data, field, visibility } = req.body;
+    const parseResult = PostSchema.safeParse(req.body);
+    if (!parseResult.success) {
+        return res.status(400).json({ error: parseResult.error.flatten() });
+    }
+
+    const { post_data, field, visibility } = parseResult.data;
+
     try {
         const result = await pool.query(
             `INSERT INTO posts (user_id, post_data, field, visibility) 
